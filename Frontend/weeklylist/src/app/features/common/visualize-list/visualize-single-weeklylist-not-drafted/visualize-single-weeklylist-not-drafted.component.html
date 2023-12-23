@@ -1,0 +1,57 @@
+<div class="container">
+  <!-- Legenda per la pizza car in alto -->
+
+
+  <div class="text-center">
+    <h2>Elenco settimanale</h2>
+    {{ weeklyList.StartDate | date: 'dd/MM' }} - {{ EndDate | date: 'dd/MM' }}
+  </div>
+  <hr>
+
+  <!-- Aggiungi questo bottone per la stampa -->
+
+  <div *ngIf="holidaysForCurrentYear.length > 0" class="mt-3 d-flex">
+    <div class="container">
+
+      <h6>Festività</h6>
+      <ul>
+        <li *ngFor="let holiday of holidaysForCurrentYear">
+          <span style="font-weight: bold;">{{ holiday.name }}</span> - {{ holiday.date | date: 'dd/MM' }}
+        </li>
+      </ul>
+    </div>
+    <div class="ml-auto"></div>
+  </div>
+
+
+
+  <div class="mt-4">
+    <h6>Legenda Pizza Car</h6>
+    <ul>
+      <li><span class="text-danger">Rosso</span> - Usa la propria auto</li>
+      <li><span class="text-success">Verde</span> - Usa la pizzacar</li>
+    </ul>
+  </div>
+  <br>
+
+  <div class="row">
+    <div class="col-md-4" *ngFor="let dailyList of weeklyList.weeklyList">
+      <div class="card mb-3">
+        <div class="card-body">
+          <h5 class="card-title">{{translateDayName(dailyList.day)}} {{ dailyList.day | date: 'dd/MM' }}</h5>
+          <ul>
+            <li *ngFor="let worker of dailyList.workerList" [ngClass]="{'text-danger': worker.useHisCar, 'text-success': !worker.useHisCar}">
+              <span class="worker-name">{{ worker.user.firstName }} {{ worker.user.lastName }}</span>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="row mt-4 mb-4">
+    <button class="btn btn-primary btn-block" (click)="printPDF()">
+      Stampa come PDF
+    </button>
+  </div>
+</div>

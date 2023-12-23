@@ -1,0 +1,27 @@
+<div class="container">
+  <div class="card bg-light">
+    <div class="card-body">
+      <h5>Aggiungi utente al sistema</h5>
+      <form (ngSubmit)="createUser()">
+        <div class="mb-3">
+          <label class="form-label">Nome</label>
+          <input type="string" class="form-control" name="firstName" [(ngModel)]="firstName">
+        </div>
+
+        <div class="mb-3">
+          <label class="form-label">Cognome</label>
+          <input type="string" class="form-control" name="lastName" [(ngModel)]="lastName">
+        </div>
+
+        <div class="mb-3">
+          <label class="form-label">Email</label>
+          <input type="string" class="form-control" name="email" [(ngModel)]="email">
+        </div>
+
+        <button type="submit" class="btn btn-primary">Invia</button>
+      </form>
+
+      <div *ngIf="passwordMessage">{{ passwordMessage }}</div>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,82 @@
+/* Generale */
+.d-flex {
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  border-radius: 5px;
+  transition: box-shadow 0.3s;
+}
+
+.d-flex:hover {
+  box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15);
+}
+
+/* Testo */
+h6.m-0 {
+  color: #333;
+  font-weight: bold;
+  padding: 5px 10px;
+}
+
+/* Modale */
+.modal-header, .modal-footer {
+  background-color: #f5f5f5;
+}
+
+.modal-header {
+  border-radius: 5px 5px 0 0;
+}
+
+.modal-footer {
+  border-radius: 0 0 5px 5px;
+}
+
+
+
+@media (max-width: 768px) {
+  .calendar-container {
+    font-size: 0.7rem;
+    padding: 2% 2%;
+  }
+}
+
+/* Scheletro del calendario */
+.calendar-container.skeleton {
+  padding: 10px;
+}
+
+.skeleton-header {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 5px;
+}
+/* Scheletro del calendario */
+.calendar-container.skeleton {
+  padding: 10px;
+}
+
+.skeleton-header {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 10px;
+}
+
+.skeleton-day {
+  flex: 1;
+  height: 30px;  /* Aumentato l'altezza */
+  background-color: #e0e0e0;
+  border-radius: 4px;
+  margin: 0 1px;
+}
+
+.skeleton-row {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 10px; /* Aumentato il margine inferiore per dare più spazio tra le righe */
+}
+
+.skeleton-cell {
+  flex: 1;
+  height: 80px;  /* Aumentato l'altezza delle celle */
+  background-color: #e0e0e0;
+  border-radius: 4px;
+  margin: 0 1px;
+}

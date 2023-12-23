@@ -1,0 +1,76 @@
+<div *ngIf="weeklyList">
+  <div class="container">
+
+    <h3 class="text-center">Prenotazione per la lista {{ weeklyList.StartDate | date: 'dd/MM' }}- {{ EndDate | date: 'dd/MM' }}</h3>
+
+
+        <div *ngIf="holidaysForCurrentYear.length > 0">
+          <div class="card mb-3">
+            <div class="card-body">
+          <h5 class="card-title">Festività della settimana:</h5>
+          <div class="container">
+            <ul>
+              <li *ngFor="let holiday of holidaysForCurrentYear">
+                <span style="font-weight: bold;">{{ holiday.name }}</span> - {{ holiday.date | date: 'dd/MM' }}
+              </li>
+            </ul>
+          </div>
+        </div>
+      </div>
+        </div>
+
+
+
+    <div *ngIf="!isUserInWorkersList()" class="alert alert-danger">Non sei nella lista lavoratori, non puoi prenotarti! In compenso sei l'admin, quindi puoi visualizzare le prenotazioni degli utenti.</div>
+
+    <div class="card mb-3">
+      <div class="card-body">
+        <h5 class="card-title">Lista Lavoratori</h5>
+        <ul>
+          <li *ngFor="let worker of weeklyList.workers">
+            {{ worker.firstName }} {{ worker.lastName }}
+          </li>
+        </ul>
+      </div>
+    </div>
+    <div *ngFor="let prenotationDay of weeklyList.prenotationDays">
+      <div class="card mb-3">
+        <div class="card-body">
+          <div class="row">
+            <div class="col-md-6">
+              <!-- Contenuto nella prima colonna (descrizione) -->
+              <h5 class="card-title">Data: {{ prenotationDay.date | date: 'dd/MM' }}</h5>
+              <p class="card-text">Numero di lavoratori richiesti: {{ prenotationDay.numberOfWorker }}</p>
+              <p class="card-text">Utenti prenotati:</p>
+              <ul>
+                <li *ngFor="let user of prenotationDay.users">
+                  {{ user.firstName }} {{ user.lastName }}
+                </li>
+              </ul>
+            </div>
+            <div class="col-md-6">
+              <!-- Pulsante nella seconda colonna a destra -->
+              <!-- Mostra il pulsante "Rimuovi Prenotazione" se l'utente è già prenotato -->
+              <button class="btn btn-danger btn-block"
+                      *ngIf="isUserPrenotated(prenotationDay)"
+                      (click)="prenotaGiorno(weeklyList._id, prenotationDay._id)">
+                Rimuovi Prenotazione
+              </button>
+
+              <!-- Altrimenti, mostra il pulsante "Prenota" -->
+              <button class="btn btn-primary btn-block"
+                      *ngIf="!isUserPrenotated(prenotationDay)"
+                      (click)="prenotaGiorno(weeklyList._id, prenotationDay._id)"
+                      [disabled]="!isDayPrenotable(prenotationDay)">
+                Prenota
+              </button>
+
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+

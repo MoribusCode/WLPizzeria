@@ -1,0 +1,58 @@
+<div class="container mt-4">
+  <div *ngIf="user">
+    <h2 class="text-center">Profilo Utente</h2>
+    <hr>
+    <div class="card">
+      <div class="card-body">
+        <h5 class="card-title">Informazioni Utente</h5>
+        <br>
+        <p class="card-text"><strong>Nome:</strong> {{ user.firstName }}</p>
+        <p class="card-text"><strong>Cognome:</strong> {{ user.lastName }}</p>
+        <p class="card-text"><strong>Email:</strong> {{ user.email }}</p>
+        <p class="card-text"><strong>Notifiche:</strong> {{ user.notificationActived ? 'Attive' : 'Disattive' }}</p>
+        <button [ngClass]="{'btn': true, 'btn-success': !user.notificationActived, 'btn-danger': user.notificationActived}" (click)="toggleNotifications()">
+          {{ user.notificationActived ? 'Disattiva Notifiche' : 'Attiva Notifiche' }}
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <div *ngIf="!user">
+    <p class="text-center">Caricamento...</p>
+  </div>
+</div>
+
+
+
+
+
+
+<ng-template #cancelNotification let-modal>
+  <div class="modal-header">
+    <h4 class="modal-title">Disattivazione Notifiche</h4>
+
+  </div>
+  <div class="modal-body">
+    Il permesso di notifica tramite mail è stato disattivato.
+
+  </div>
+  <div class="modal-footer">
+    <button type="button" class="btn btn-secondary" (click)="modal.close('Close click')">Ok</button>
+  </div>
+</ng-template>
+
+<ng-template #setNotification let-modal>
+  <div class="modal-header">
+    <h4 class="modal-title">Attivazione Notifiche</h4>
+
+  </div>
+  <div class="modal-body">
+    Grazie per aver abilitato le notifiche! Ora riceverai aggiornamenti importanti in tempo reale a questa email <strong>{{user.email}}</strong>.
+
+  </div>
+  <div class="modal-footer">
+    <button type="button" class="btn btn-primary" (click)="modal.close('Close click')">Ok, ho capito</button>
+  </div>
+</ng-template>
+
+

@@ -1,0 +1,16 @@
+.navbar-container {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 1000;
+  background-color: #fff; /* Colore di sfondo della navbar */
+}
+
+.content-container {
+  margin-top: 70px; /* Altezza della navbar + margine superiore per separare */
+}
+
+.container {
+  padding-top: 20px; /* Aggiungi spazio sopra il contenuto per un margine migliore */
+}

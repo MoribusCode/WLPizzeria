@@ -1,0 +1,47 @@
+<div class="container">
+  <div class="card bg-light">
+    <div class="card-body">
+      <h2 class="text-center">Liste prenotabili</h2>
+      <hr>
+      <ng-container *ngIf="weeklyListData; else loading">
+        <ng-container *ngIf="weeklyListData.length > 0; else noList">
+
+
+          <!-- Liste Vecchie -->
+          <div class="old-lists-container">
+            <div *ngFor="let weeklyList of weeklyListData; let i = index">
+
+                <app-list-button
+                    [url]="'book_weekly-list'"
+                    [weeklyList]="weeklyList"
+                    (listDeleted)="onListDeleted1($event)">
+                </app-list-button>
+
+            </div>
+          </div>
+
+        </ng-container>
+      </ng-container>
+    </div>
+  </div>
+</div>
+
+<ng-template #loading>
+  <div class="text-center">
+    <p>Caricamento in corso...</p>
+    <div *ngFor="let _ of [].constructor(5); let i = index" [ngClass]="'skeleton-card-' + i">
+      <div class="card mb-3 skeleton-card">
+        <div class="card-body">
+          <h5 class="card-title skeleton-text">&nbsp;</h5>
+          <div class="skeleton-btn"></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</ng-template>
+
+<ng-template #noList>
+  <div class="container mt-3">
+    <h5>Non ci sono liste disponibili al momento per la prenotazione.</h5>
+  </div>
+</ng-template>

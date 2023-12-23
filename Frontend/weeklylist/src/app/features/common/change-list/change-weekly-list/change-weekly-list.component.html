@@ -1,0 +1,59 @@
+<div class="container">
+
+  <ng-container *ngIf="weeklyListData; else loading">
+    <ng-container *ngIf="weeklyListData.length > 0; else noListChange">
+      <div class="card mb-3 bg-light">
+        <div class="card-body">
+          <div class="text-center">
+            <h4>Modifica Lista Corrente</h4>
+          </div>
+          <div class="text-center mb-2">
+            <span class="badge bg-secondary">Nuova</span>
+          </div>
+          <hr>
+          <!-- Lista corrente -->
+          <app-list-button [url]="'change_weekly-list'" [weeklyList]="weeklyListData[0]" (listDeleted)="onListDeleted1($event)"></app-list-button>
+        </div>
+      </div>
+
+      <!-- Lista con tutte le liste vecchie -->
+      <div class="card mb-3 bg-light">
+        <div class="card-body">
+          <div class="text-center">
+            <h4>Modifica Liste Vecchie</h4>
+          </div>
+          <hr>
+          <ng-container *ngFor="let weeklyList of weeklyListData; let i = index">
+            <div *ngIf="i > 0">
+              <app-list-button [url]="'change_weekly-list'" [weeklyList]="weeklyList" (listDeleted)="onListDeleted1($event)"></app-list-button>
+            </div>
+          </ng-container>
+        </div>
+      </div>
+    </ng-container>
+  </ng-container>
+</div>
+
+
+
+
+<ng-template #loading>
+  <div class="text-center">
+    <p>Caricamento in corso...</p>
+    <div *ngFor="let _ of [].constructor(5); let i = index" [ngClass]="'skeleton-card-' + i">
+      <div class="card mb-3 skeleton-card">
+        <div class="card-body">
+          <h5 class="card-title skeleton-text">&nbsp;</h5>
+          <div class="skeleton-btn"></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</ng-template>
+
+<ng-template #noListChange>
+  <div class="container mt-3">
+    <h5>Non ci sono liste disponibili al momento per il cambio.</h5>
+  </div>
+</ng-template>
+

@@ -1,0 +1,91 @@
+<div *ngIf="isLoading; else calendarContent" class="text-center">
+  Caricamento in corso...
+
+  <!-- Scheletro del calendario -->
+  <div class="calendar-container skeleton">
+    <div class="skeleton-header">
+      <div class="skeleton-day" *ngFor="let _ of [].constructor(7); let j = index"></div>
+    </div>
+    <div *ngFor="let _ of [].constructor(6); let i = index" class="skeleton-row">
+      <div *ngFor="let _ of [].constructor(7); let j = index" class="skeleton-cell"></div>
+    </div>
+  </div>
+</div>
+
+<ng-template #calendarContent>
+
+  <h2 class="text-center">Calendario</h2>
+  <hr>
+  <br>
+  <div class="d-flex justify-content-between align-items-center my-3">
+    <button class="btn btn-primary" (click)="prevMonth()">Mese Precedente</button>
+    <h6 class="m-0">{{ viewDate | date: 'MMMM y' }}</h6>
+    <button class="btn btn-primary" (click)="nextMonth()">Mese Successivo</button>
+  </div>
+
+  <div class="calendar-container">
+    <mwl-calendar-month-view
+      [viewDate]="viewDate"
+      [events]="events"
+      (dayClicked)="onDayClicked($event)">
+    </mwl-calendar-month-view>
+  </div>
+
+  <!-- ... (resto del tuo codice HTML) -->
+</ng-template>
+
+
+
+
+<ng-template #confirmModal>
+  <div class="modal-header">
+    <h4 class="modal-title">Conferma prenotazione</h4>
+  </div>
+  <div class="modal-body">
+    <p>Vuoi confermare la prenotazione per il giorno {{ selectedDay.date | date:'dd/MM/yyyy' }}?</p>
+
+    <ng-container *ngIf="selectedDayEvents.length > 0; else noPrenotazioni">
+      <h6>Elenco delle persone prenotate:</h6>
+      <ul>
+        <li *ngFor="let event of selectedDayEvents">
+          <!-- Assumi che event contenga informazioni sull'utente prenotato -->
+          {{ getUserNameFromId(event.title) }}<br>
+        </li>
+
+      </ul>
+    </ng-container>
+    <ng-template #noPrenotazioni>
+      <p>Non ci sono persone prenotate per questo giorno.</p>
+    </ng-template>
+  </div>
+  <div class="modal-footer">
+    <button type="button" class="btn btn-light" (click)="modalService.dismissAll()">Annulla</button>
+    <button type="button" class="btn btn-primary" [disabled]="isBookingInProgress" (click)="confirmBooking()">Conferma</button>
+  </div>
+</ng-template>
+
+
+
+
+
+
+
+
+
+<ng-template #removeBookingModal>
+  <div class="modal-header">
+    <h4 class="modal-title">Rimuovi prenotazione</h4>
+  </div>
+  <div class="modal-body">
+    Vuoi rimuovere la tua prenotazione per il giorno {{ selectedDay.date | date:'dd/MM/yyyy' }}?
+  </div>
+  <div class="modal-footer">
+    <button type="button" class="btn btn-light" (click)="modalService.dismissAll()">Annulla</button>
+    <button type="button" class="btn btn-danger" (click)="removeBooking()">Rimuovi</button>
+  </div>
+</ng-template>
+
+
+
+
+

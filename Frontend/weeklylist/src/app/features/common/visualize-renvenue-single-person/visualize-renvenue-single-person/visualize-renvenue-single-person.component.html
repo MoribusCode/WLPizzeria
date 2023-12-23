@@ -1,0 +1,51 @@
+<div class="container">
+  <div class="card">
+    <div class="card-body text-center">
+      <div *ngIf="isLoading; else contentLoading">
+        <h1 style="text-align: center;">Caricamento in corso...</h1>
+      </div>
+      <ng-template #contentLoading>
+        <div *ngIf="!isLoading">
+          <h1 style="text-align: center;">Rapporto Mensile</h1>
+          <div class="alert alert-warning" role="alert">
+            Se non riesci a visualizzare scorri verso sinsitra!
+          </div>
+          <div *ngFor="let monthData of monthlyData">
+
+            <hr>
+            <h2>{{ monthData.month | titlecase }}</h2>
+
+            <div class="table-responsive">
+              <table class="table table-bordered table-striped">
+                <thead>
+                  <tr>
+                    <th class="text-center">Giorni (Propria)</th>
+                    <th class="text-center">Giorni (Pizzeria)</th>
+                    <th class="text-center">Guadagni (Propria) </th>
+                    <th class="text-center">Guadagni (Pizzeria) </th>
+                    <th class="text-center">
+                      <span class="total-earnings">Guadagni totali (€)</span>
+                    </th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr *ngFor="let worker of monthData.workers">
+                    <td class="text-center">{{ worker.usedDays }}</td>
+                    <td class="text-center">{{ worker.unusedDays }}</td>
+                    <td class="text-center">{{ calculateEarningsWithHisCar(worker) }} €</td>
+                    <td class="text-center">{{ calculateEarningsWithPizzeriaCar(worker) }} €</td>
+                    <td class="text-center">
+                      <span class="total-earnings">{{ calculateEarnings(worker) }} €</span>
+                    </td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+            <br>
+          </div>
+        </div>
+      </ng-template>
+    </div>
+  </div>
+</div>
+

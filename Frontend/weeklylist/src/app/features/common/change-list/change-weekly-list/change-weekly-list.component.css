@@ -1,0 +1,50 @@
+.skeleton-card {
+  background: #f0f0f0; /* Colore di sfondo grigio chiaro per la card */
+  overflow: hidden; /* Evita che gli sfondi degli elementi figli fuoriescano */
+}
+
+.skeleton-text {
+  height: 20px; /* Altezza arbitraria per il testo simulato */
+  background: linear-gradient(90deg, #e0e0e0 25%, #c0c0c0 50%, #e0e0e0 75%);
+  background-size: 200% 100%;
+  animation: skeleton-animation 1.5s infinite;
+  margin-bottom: 15px; /* Spazio tra il testo simulato e il pulsante simulato */
+}
+
+.skeleton-btn {
+  height: 40px; /* Altezza del pulsante */
+  width: 150px; /* Larghezza del pulsante */
+  background: linear-gradient(90deg, #e0e0e0 25%, #c0c0c0 50%, #e0e0e0 75%);
+  background-size: 200% 100%;
+  animation: skeleton-animation 1.5s infinite;
+}
+
+@keyframes skeleton-animation {
+  0% {
+    background-position: 200% 0;
+  }
+  100% {
+    background-position: -200% 0;
+  }
+}
+
+.skeleton-card-0 .skeleton-card {
+  opacity: 1;
+}
+
+.skeleton-card-1 .skeleton-card {
+  opacity: 0.8;
+}
+
+.skeleton-card-2 .skeleton-card {
+  opacity: 0.6;
+}
+
+.skeleton-card-3 .skeleton-card {
+  opacity: 0.4;
+}
+
+.skeleton-card-4 .skeleton-card {
+  opacity: 0.2;
+}
+

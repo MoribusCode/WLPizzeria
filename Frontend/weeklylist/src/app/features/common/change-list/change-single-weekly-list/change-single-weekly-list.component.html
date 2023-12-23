@@ -1,0 +1,49 @@
+<div *ngIf="items && items.length" class="container">
+  <div class="text-center">
+    <h4>Modifica la lista</h4>
+
+  </div>
+  <div class="text-center">
+    <h6>{{weeklyList.StartDate | date:'dd/MM'}} - {{endData | date:'dd/MM'}}</h6>
+
+  </div>
+  <hr>
+    <br>
+  <form #dataForm="ngForm" (ngSubmit)="onFormSubmit(dataForm.value)">
+    <div class="table-responsive overflow-auto"> <!-- Aggiunto overflow-auto -->
+      <table class="table table-bordered table-striped">
+        <thead class="thead-dark">
+          <tr>
+            <th>Nome</th>
+            <th>Cognome</th>
+            <ng-container *ngFor="let itemData of items[0].data">
+              <th>{{translateDayName(itemData.date)}} | {{ itemData.date | date:'dd-MM' }}</th>
+
+
+            </ng-container>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let item of items; let i = index">
+            <td>{{ item.user.firstName }}</td>
+            <td>{{ item.user.lastName }}</td>
+            <ng-container *ngFor="let dataItem of item.data; let j = index">
+              <td>
+                <select [(ngModel)]="items[i].data[j].val" name="val-{{i}}-{{j}}" class="form-control">
+                  <option value="NONE"></option>
+                  <option value="OWNCAR">X*</option>
+                  <option value="PIZZACAR">X</option>
+                </select>
+              </td>
+            </ng-container>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+    <div class="text-center mt-4">
+      <button type="submit" class="btn btn-primary">Modifica!</button>
+    </div>
+  </form>
+</div>
+
+

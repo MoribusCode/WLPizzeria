@@ -1,0 +1,35 @@
+{
+  "type": "module",
+  "name": "backend",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "run": "tsc && node ./dist/Server/server.js"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "@types/lodash": "^4.14.198",
+    "@types/mongoose": "^5.11.97",
+    "@types/node": "^20.5.9",
+    "@types/nodemailer": "^6.4.14",
+    "@types/passport": "^1.0.12",
+    "@types/passport-http": "^0.3.9",
+    "chalk": "^5.3.0",
+    "dotenv": "^16.3.1",
+    "express": "^4.18.2",
+    "express-jwt": "^8.4.1",
+    "jsonwebtoken": "^9.0.2",
+    "passport": "^0.6.0",
+    "passport-http": "^0.3.0",
+    "typescript": "^5.2.2"
+  },
+  "dependencies": {
+    "cors": "^2.8.5",
+    "mongoose": "^7.5.0",
+    "nodemailer": "^6.9.7"
+  }
+}

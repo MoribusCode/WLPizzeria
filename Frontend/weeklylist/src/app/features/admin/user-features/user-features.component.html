@@ -1,0 +1,78 @@
+<div class="container">
+  <div class="container mb-6">
+    <div style="float: left; width: 100%;">
+      <h2>Bentornato {{getPerson().getFirstName()}}!</h2> <!-- Saluto all'utente -->
+      <hr class="my-4">
+    </div>
+  <div>
+  <h2 class="text-center">Funzionalità Utente</h2>
+  <br>
+
+  <div class="row admin-features">
+    <div class="col-md-4 mb-4">
+      <div class="feature-card">
+        <app-feature-button-admin class="feature-button" title="Calendario" description="Visualizza calendario e pianifica assenze" link="/admin-dashboard/visualize-calendar" imageUrl="see_calendar.png"></app-feature-button-admin>
+      </div>
+    </div>
+
+    <div class="col-md-4 mb-4">
+      <div class="feature-card">
+        <app-feature-button-admin class="feature-button" title="Guadagno" description="Visualizza dettagli sul guadagno" link="/admin-dashboard/visualize-revenue" imageUrl="see_renvenue.png"></app-feature-button-admin>
+      </div>
+    </div>
+
+    <div class="col-md-4 mb-4">
+      <div class="feature-card">
+        <app-feature-button-admin class="feature-button" title="Weeklylists" description="Visualizza l'elenco delle liste pubblicate" link="/admin-dashboard/weekly-lists-not-drafted" imageUrl="see_bozze_not_drafted.png"></app-feature-button-admin>
+      </div>
+    </div>
+
+    <div class="col-md-4 mb-4">
+      <div class="feature-card">
+        <app-feature-button-admin class="feature-button" title="Prenotazione" description="Prenota specifici giorni" link="/admin-dashboard/book_weekly-list" imageUrl="book_lists.png"></app-feature-button-admin>
+      </div>
+    </div>
+
+    <div class="col-md-4 mb-4">
+      <div class="feature-card">
+        <app-feature-button-admin class="feature-button" title="Modifica Liste" description="Cambia le liste settimanali" link="/admin-dashboard/change_weekly-list" imageUrl="change_list.png"></app-feature-button-admin>
+      </div>
+    </div>
+  </div>
+</div>
+
+<br>
+<hr>
+
+<h2 class="text-center">Grafici</h2>
+
+<div class="container">
+  <div class="row">
+    <div class="col-md-4 mt-3">
+      <div class="card bg-light">
+        <div class="card-body">
+          <canvas #myPieChart2></canvas>
+        </div>
+      </div>
+    </div>
+    <div class="col-md-4 mt-3">
+      <div class="card bg-light">
+        <div class="card-body">
+          <canvas #myPieChart3></canvas>
+        </div>
+      </div>
+    </div>
+    <div class="col-md-4 mt-3">
+      <div class="card bg-light">
+        <div class="card-body">
+          <canvas #myChart width="300" height="300"></canvas>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<app-renvenues-chart></app-renvenues-chart>
+
+
+<hr>

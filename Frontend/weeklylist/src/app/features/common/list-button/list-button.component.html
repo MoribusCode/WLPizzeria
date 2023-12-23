@@ -1,0 +1,44 @@
+<div class="card mb-3" [class.modified]="isModified">
+  <div class="card-body d-flex justify-content-between align-items-center">
+    <div>
+      <h6 class="card-title">
+        <strong>Lun {{ weeklyList.StartDate | date: 'dd/MM' }} - </strong>
+        <strong>Dom {{ getEndDate(weeklyList.StartDate) | date: 'dd/MM' }}</strong><p *ngIf="!getUpsValue().getIsOwner() && !isUserInWorkersList()">Non sei nella lista lavoratori, non puoi visualizzare</p>
+      </h6>
+
+
+      <!-- Aggiunta della scritta a destra se isModified è true -->
+
+      <div class="row">
+        <div class="col-6">
+          <button class="btn btn-success" (click)="redirectToWeeklyLists()" [disabled]="!isListWatchable()">Visualizza</button>
+
+        </div>
+        <div class="col-6">
+
+          <button *ngIf="getUpsValue().getIsOwner()" class="btn btn-danger" (click)="deleteWeeklyList(weeklyList)">Elimina</button>
+        </div>
+      </div>
+
+
+
+
+    </div>
+
+    <!-- Aggiungi il pulsante per eliminare la lista solo se l'utente è un amministratore -->
+
+  </div>
+
+  <!-- Aggiungi una sezione per mostrare le festività -->
+  <div *ngIf="holidaysForCurrentYear.length > 0" class="mt-3 d-flex">
+    <div class="container">
+      <h6>Festività</h6>
+      <ul>
+        <li *ngFor="let holiday of holidaysForCurrentYear">
+          <span style="font-weight: bold;">{{ holiday.name }}</span> - {{ holiday.date | date: 'dd/MM' }}
+        </li>
+      </ul>
+    </div>
+  </div>
+</div>
+

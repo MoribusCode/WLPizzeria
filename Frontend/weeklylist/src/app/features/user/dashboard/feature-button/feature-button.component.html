@@ -1,0 +1,14 @@
+<div class="card bg-light" [routerLink]="link"> <!-- Aggiunto "bg-light" alla classe "card" -->
+  <div class="card-body">
+    <div class="row">
+      <div class="col-3">
+        <img src="assets/images/{{imageUrl}}" alt="Descrizione dell'immagine" style="max-width: 80px; height: auto;">
+      </div>
+
+      <div class="col-8" style="margin-left: 20px;">
+        <h5 class="card-title">{{ title }}</h5>
+        <p class="card-text">{{description}}</p>
+      </div>
+    </div>
+  </div>
+</div>

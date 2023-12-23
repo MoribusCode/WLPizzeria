@@ -1,0 +1,38 @@
+/* Stile base per il bottone */
+.feature-btn {
+  transition: all 0.3s ease;
+  background-color: #5170ce; /* Azzurro */
+  color: #ffffff;
+  border: none;
+}
+
+/* Stile hover per il bottone per dispositivi desktop */
+.feature-btn:hover {
+  background-color: #2B9FB9; /* Azzurro scuro */
+  color: #ffffff;
+  transform: scale(1.05); /* Aumenta leggermente le dimensioni */
+  box-shadow: 0 5px 15px rgba(44, 62, 80, 0.2); /* Ombra leggera */
+}
+
+/* Stile active per il bottone per dispositivi touch */
+.feature-btn:active {
+  background-color: #2B9FB9; /* Azzurro scuro */
+  color: #ffffff;
+  transform: scale(1.05); /* Aumenta leggermente le dimensioni */
+  box-shadow: 0 5px 15px rgba(44, 62, 80, 0.2); /* Ombra leggera */
+}
+
+/* Effetto di transizione quando si passa il mouse o si tocca la card */
+.feature-card:hover, .feature-card:active {
+  transform: translateY(-5px);
+}
+
+.feature-card {
+  transition: all 0.3s ease;
+  background: linear-gradient(135deg, rgb(160, 234, 87) 0%, rgb(77, 189, 119) 100%); /* Gradient da grigio chiaro a grigio medio */
+}
+
+.feature-card i {
+  font-size: 2rem;
+  color: #5CD1E5; /* Azzurro */
+}

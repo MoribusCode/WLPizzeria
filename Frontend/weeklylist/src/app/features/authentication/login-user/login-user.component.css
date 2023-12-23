@@ -1,0 +1,5 @@
+/* Nel tuo file CSS o SCSS */
+.transparent-background {
+  background-color: rgba(255, 255, 255, 0.5); /* Colore bianco con un canale alfa di 0.5 (trasparente al 50%) */
+  /* Altre proprietà CSS per lo stile dell'elemento */
+}

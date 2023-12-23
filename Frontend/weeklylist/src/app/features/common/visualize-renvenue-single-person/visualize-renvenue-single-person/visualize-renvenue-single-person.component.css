@@ -1,0 +1,4 @@
+/* Aggiungi queste regole CSS al tuo file di stile per colorare i guadagni totali di rosso */
+.total-earnings {
+  color: red;
+}

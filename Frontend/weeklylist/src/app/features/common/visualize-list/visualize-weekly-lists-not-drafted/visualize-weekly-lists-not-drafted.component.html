@@ -1,0 +1,71 @@
+<div class="container">
+  <!-- Mostra il caricamento finché isLoading è true -->
+  <ng-container *ngIf="isLoading; else contentLoaded">
+    <div class="text-center">
+      <p>Caricamento in corso...</p>
+      <!-- Liste scheletriche per il caricamento -->
+      <div *ngFor="let _ of [].constructor(5); let i = index" [ngClass]="'skeleton-card-' + i">
+        <div class="card mb-3 skeleton-card">
+          <div class="card-body">
+            <h5 class="card-title skeleton-text">&nbsp;</h5>
+            <div class="skeleton-btn"></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </ng-container>
+
+  <!-- Contenuto che verrà mostrato una volta che isLoading è false -->
+  <ng-template #contentLoaded>
+    <ng-container *ngIf="weeklyListData.length > 0; else noList">
+      <!-- Intestazione e bottone per la Lista Corrente -->
+      <div *ngIf="weeklyListData[0]" class="current-list-heading mb-2 current-list-bordered">
+        <div class="card mb-3 bg-light">
+          <div class="card-body">
+            <div class="text-center">
+              <h4>Visualizza Lista Corrente</h4>
+            </div>
+            <div class="text-center mb-2">
+              <span class="badge bg-secondary">Nuova</span>
+            </div>
+            <hr>
+
+            <app-list-button
+              [url]="'weekly-lists-not-drafted'"
+              [weeklyList]="weeklyListData[0]"
+              [isModified]="modifiedListId === weeklyListData[0]._id"
+              (listDeleted)="onListDeleted($event)">
+            </app-list-button>
+            <!-- Aggiungi un tasto per eliminare la lista corrente o le altre liste -->
+          </div>
+        </div>
+      </div>
+      <br>
+      <div class="card mb-3 bg-light">
+        <div class="card-body">
+          <!-- Bottone della lista per tutte le altre liste eccetto la corrente -->
+          <div class="old-lists-container">
+            <div class="text-center">
+              <h4>Visualizza Liste Vecchie</h4>
+            </div>
+            <hr>
+            <div *ngFor="let weeklyList of weeklyListData; let i = index">
+              <ng-container *ngIf="i !== 0"> <!-- Escludi la lista corrente e mostra solo le liste vecchie -->
+                <app-list-button
+                  [url]="'weekly-lists-not-drafted'"
+                  [weeklyList]="weeklyList"
+                  [isModified]="modifiedListId === weeklyList._id"
+                  (listDeleted)="onListDeleted($event)">
+                </app-list-button>
+                <!-- Aggiungi un divisorio -->
+              </ng-container>
+            </div>
+          </div>
+        </div>
+      </div>
+    </ng-container>
+    <ng-template #noList>
+      <h5>Non ci sono liste disponibili al momento.</h5>
+    </ng-template>
+  </ng-template>
+</div>

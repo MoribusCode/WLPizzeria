@@ -1,0 +1,5 @@
+.navbar-bordered {
+  border: 1px solid #e0e0e0; /* Aggiungi il bordo con il colore desiderato */
+  border-radius: 10px; /* Applica i bordi arrotondati, se necessario */
+  padding: 10px; /* Aggiungi spazio interno per rendere i bordi visibili */
+}

@@ -1,0 +1,84 @@
+
+<div class="container mt-6">
+
+
+
+  <div class="row common-features"></div>
+  <div class="container mb-6">
+    <div style="float: left; width: 100%;">
+      <h2>Bentornato {{getPerson().getFirstName()}}!</h2> <!-- Saluto all'utente -->
+      <hr class="my-4">
+    </div>
+  <div>
+
+  <h2 class="text-center">Funzionalità Utente</h2>
+  <br>
+
+
+  <div class="row user-features">
+    <div class="col-md-4 mb-4">
+      <div class="feature-card">
+        <app-feature-button-user class="feature-button" title="Calendario" description="Visualizza calendario e pianifica assenze" link="/user-dashboard/visualize-calendar" imageUrl="see_calendar.png"></app-feature-button-user>
+      </div>
+    </div>
+
+    <div class="col-md-4 mb-4">
+      <div class="feature-card">
+        <app-feature-button-user class="feature-button" title="Guadagno Personale" description="Visualizza dettagli sul guadagno" link="/user-dashboard/visualize-renvenue" imageUrl="see_renvenue.png"></app-feature-button-user>
+      </div>
+    </div>
+
+    <div class="col-md-4 mb-4">
+      <div class="feature-card">
+        <app-feature-button-user class="feature-button" title="Weeklylists" description="Visualizza l'elenco delle liste pubblicate" link="/user-dashboard/weekly-lists-not-drafted" imageUrl="see_bozze_not_drafted.png"></app-feature-button-user>
+      </div>
+    </div>
+
+    <div class="col-md-4 mb-4">
+      <div class="feature-card">
+        <app-feature-button-user class="feature-button" title="Prenotazione" description="Prenota specifici giorni" link="/user-dashboard/book_weekly-list" imageUrl="book_lists.png"></app-feature-button-user>
+      </div>
+    </div>
+
+    <div class="col-md-4 mb-4">
+      <div class="feature-card">
+        <app-feature-button-user class="feature-button" title="Modifica Liste" description="Cambia le liste settimanali" link="/user-dashboard/change_weekly-list" imageUrl="change_list.png"></app-feature-button-user>
+      </div>
+    </div>
+  </div>
+</div>
+
+<hr class="my-4">
+<h2 class="text-center">Grafici</h2>
+
+
+<div class="container">
+  <div class="row">
+    <div class="col-md-4 mt-3">
+      <div class="card bg-light"> <!-- Aggiunto "bg-light" alla classe "card" -->
+        <div class="card-body">
+          <canvas #myPieChart2 width="300" height="300"></canvas>
+        </div>
+      </div>
+    </div>
+    <div class="col-md-4 mt-3">
+      <div class="card bg-light"> <!-- Aggiunto "bg-light" alla classe "card" -->
+        <div class="card-body">
+          <canvas #myPieChart3 width="300" height="300"></canvas>
+        </div>
+      </div>
+    </div>
+    <div class="col-md-4 mt-3">
+      <div class="card bg-light"> <!-- Aggiunto "bg-light" alla classe "card" -->
+        <div class="card-body">
+          <canvas #myChart width="300" height="300"></canvas>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<app-renvenues-chart></app-renvenues-chart>
+
+
+

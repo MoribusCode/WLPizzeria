@@ -1,0 +1,43 @@
+<div class="container">
+  <div class="row common-features">
+
+      <div style="float: left; width: 100%;">
+        <h2>Bentornato {{getPerson().getFirstName()}}!</h2> <!-- Saluto all'utente -->
+        <hr class="my-4">
+      </div>
+    <div class="col-12 text-center">
+      <h2>Funzionalità Admin</h2>
+      <br>
+    </div>
+
+    <div class="col-md-4 mb-4">
+      <div class="feature-card">
+        <app-feature-button-admin class="feature-button" title="Bozze" description="Crea una bozza della lista settimanale" link="create-list" imageUrl="add_bozza.png"></app-feature-button-admin>
+      </div>
+    </div>
+
+    <div class="col-md-4 mb-4">
+      <div class="feature-card">
+        <app-feature-button-admin class="feature-button" title="Creazione utente" description="Aggiungi un nuovo utente al sistema" link="add-user" imageUrl="add_user.png"></app-feature-button-admin>
+      </div>
+    </div>
+
+    <div class="col-md-4 mb-4">
+      <div class="feature-card">
+        <app-feature-button-admin class="feature-button" title="Creazione Bozze" description="Visualizza bozze e crea liste" link="weekly-lists-drafted" imageUrl="see_bozze.png"></app-feature-button-admin>
+      </div>
+    </div>
+
+    <div class="col-md-4 mb-4">
+      <div class="feature-card">
+        <app-feature-button-admin class="feature-button" title="Utenti" description="Visualizza elenco utenti registrati" link="visualize-users" imageUrl="see_users.png"></app-feature-button-admin>
+      </div>
+    </div>
+
+    <div class="col-md-4 mb-4">
+      <div class="feature-card">
+        <app-feature-button-admin class="feature-button" title="Guadagni" description="Visualizza le entrate dagli utenti" link="visualize-revenues" imageUrl="see_renvenues.png"></app-feature-button-admin>
+      </div>
+    </div>
+  </div>
+</div>

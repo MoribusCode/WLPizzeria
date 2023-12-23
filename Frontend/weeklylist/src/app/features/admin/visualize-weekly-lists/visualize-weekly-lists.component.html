@@ -1,0 +1,43 @@
+<div class="container">
+  <div class="card bg-light">
+    <div class="card-body">
+
+      <!-- Se isLoading è true, mostrerà lo scheletro di caricamento -->
+      <ng-container *ngIf="isLoading; else contentLoaded">
+        <div class="text-center">
+          <p>Caricamento in corso...</p>
+          <!-- Liste scheletriche per il caricamento -->
+          <div *ngFor="let _ of [].constructor(5); let i = index" [ngClass]="'skeleton-card-' + i">
+            <div class="card mb-3 skeleton-card">
+              <div class="card-body">
+                <h5 class="card-title skeleton-text">&nbsp;</h5>
+                <div class="skeleton-btn"></div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </ng-container>
+
+      <!-- Contenuto mostrato una volta che isLoading è false -->
+      <ng-template #contentLoaded>
+        <ng-container *ngIf="weeklyListData.length > 0; else noList">
+          <div class="text-center">
+            <h4>Bozze da calcolare</h4>
+          </div>
+          <div *ngFor="let weeklyList of weeklyListData">
+            <app-list-button
+              [url]="'weekly-lists-drafted'"
+              [weeklyList]="weeklyList"
+              (listDeleted)="onListDeleted($event)">
+            </app-list-button>
+          </div>
+        </ng-container>
+        <ng-template #noList>
+          <h5>Non ci sono liste disponibili al momento.</h5>
+        </ng-template>
+      </ng-template>
+
+    </div>
+  </div>
+</div>
+

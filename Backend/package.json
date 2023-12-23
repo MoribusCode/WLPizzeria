@@ -6,7 +6,7 @@
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "run": "tsc && node ./dist/Server/server.js"
+    "run": "tsc && cp tsFiles/Server/.env dist/server/ && node ./dist/Server/server.js"
   },
   "keywords": [],
   "author": "",

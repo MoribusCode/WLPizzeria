@@ -2,6 +2,7 @@ export interface weeklyCreation {
   numberOfWorkers: number[];
   date: string;
   workers: string[];
+  sendNotifications: boolean
 }
 
 

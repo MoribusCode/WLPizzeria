@@ -18,6 +18,7 @@ export class CreateListComponent {
     numberOfWorkers: [0, 0, 0, 0, 0, 0, 0],
     date: '',
     workers: [],
+    sendNotifications: false
   };
   message: string = '';
   errorMessage: string = '';
@@ -104,29 +105,32 @@ export class CreateListComponent {
         const soggettoNotifica =
           "Nuova Bozza Disponibile del giorno " + `${startGiorno}/${startMese} - ${endGiorno}/${endMese}` +" su Weeklylist - Visualizzala Ora"
 
-
         const testoNotifica =
           'Siamo lieti di annunciarti che una nuova bozza è ora disponibile per la tua revisione su Weeklylist. Per visualizzarla e fornirci il tuo feedback, ti invitiamo a cliccare sul seguente link:';
 
-        this.ens
-          .sendNotification(
-            'metiupaga8@gmail.com',
-            data.workers,
-            soggettoNotifica,
-            testoNotifica,
-            environment.urlWebSite + "/admin-dashboard/book_weekly-list",
-            environment.urlWebSite + "/user-dashboard/book_weekly-list"
-          )
-          .subscribe(
-            () => {
-              console.log('Notifica inviata con successo');
-              // Gestisci la risposta dell'invio della notifica se necessario
-            },
-            (error) => {
-              console.error("Errore durante l'invio della notifica:", error);
-              // Gestisci gli errori dell'invio della notifica se necessario
-            }
-          );
+        // Controlla se l'input checkbox è selezionato prima di inviare la notifica
+        if (this.formData.sendNotifications) {
+          this.ens
+            .sendNotification(
+              'metiupaga8@gmail.com',
+              data.workers,
+              soggettoNotifica,
+              testoNotifica,
+              environment.urlWebSite + "/admin-dashboard/book_weekly-list",
+              environment.urlWebSite + "/user-dashboard/book_weekly-list"
+            )
+            .subscribe(
+              () => {
+                console.log('Notifica inviata con successo');
+                // Gestisci la risposta dell'invio della notifica se necessario
+              },
+              (error) => {
+                console.error("Errore durante l'invio della notifica:", error);
+                // Gestisci gli errori dell'invio della notifica se necessario
+              }
+            );
+        }
+
         this.message = 'Lista creata';
       },
       (error) => {
@@ -139,6 +143,7 @@ export class CreateListComponent {
     );
     // Esegui le azioni desiderate quando il form viene inviato
   }
+
 
   addWorker(worker: IUser) {
     if (!this.formData.workers.includes(worker._id)) {

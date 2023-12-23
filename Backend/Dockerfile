@@ -1,14 +1,23 @@
 FROM node:14
 
-#RUN npm install -g typescript
+# Install TypeScript globalmente (se necessario)
+# RUN npm install -g typescript
 
 RUN mkdir -p /app/Backend
 WORKDIR /app/Backend
-COPY package.json package-lock.json /app/Backend/
+
+COPY tsFiles /app/Backend/tsFiles
+# Copia i file di configurazione e installa le dipendenze
+COPY package.json package-lock.json tsconfig.json /app/Backend/
 RUN npm install
 
-COPY /dist/ /app/Backend/dist
-COPY /tsconfig.json /app/Backend/
+# Esegui la compilazione TypeScript
+RUN npx tsc
+
+COPY dist/Server/.env ./dist/Server/
+
+# Copia i file generati nella cartella dist
+# COPY dist/ /app/Backend/dist
 
 EXPOSE 3000
 

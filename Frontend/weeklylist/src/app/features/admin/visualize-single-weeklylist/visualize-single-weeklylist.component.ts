@@ -20,6 +20,7 @@ import { EmailNotificationService } from 'src/app/common/api/http-requests/reque
 export class VisualizeSingleWeeklylistComponent {
   weeklyList!: IWeeklyList; // Tipo dati da sostituire con la tua interfaccia
   workerDaysMap: Map<string, number> = new Map(); // Mappa per associare id lavoratore con giorni di lavoro
+  sendNotifications: boolean = false;
 
   userPrenotationCounts: Record<
     string,
@@ -126,32 +127,34 @@ export class VisualizeSingleWeeklylistComponent {
           const endMese = endDataOra.getMonth() + 1; // Il mese inizia da 0, quindi aggiungi 1
           const endGiorno = endDataOra.getDate();
 
-          const soggettoNotifica =
-          'Scopri la Nuova Lista su Weeklylist del ' + `${startGiorno}/${startMese} - ${endGiorno}/${endMese}` + '';
+          if (this.sendNotifications) {
+            const soggettoNotifica =
+              'Scopri la Nuova Lista su Weeklylist del ' + `${startGiorno}/${startMese} - ${endGiorno}/${endMese}` + '';
 
+            const testoNotifica =
+              'Siamo entusiasti di presentarti la nuova lista aggiornata disponibile su Weeklylist. Ti invitiamo a esplorarla e condividere le tue preziose opinioni con noi. Puoi accedere alla lista tramite il link qui sotto:';
 
-        const testoNotifica =
-          'Siamo entusiasti di presentarti la nuova lista aggiornata disponibile su Weeklylist. Ti invitiamo a esplorarla e condividere le tue preziose opinioni con noi. Puoi accedere alla lista tramite il link qui sotto:';
+            this.ens
+              .sendNotification(
+                'metiupaga8@gmail.com',
+                data.workers,
+                soggettoNotifica,
+                testoNotifica,
+                environment.urlWebSite + '/admin-dashboard/weekly-lists-not-drafted',
+                environment.urlWebSite + '/user-dashboard/weekly-lists-not-drafted'
+              )
+              .subscribe(
+                () => {
+                  console.log('Notifica inviata con successo');
+                  // Gestisci la risposta dell'invio della notifica se necessario
+                },
+                (error) => {
+                  console.error("Errore durante l'invio della notifica:", error);
+                  // Gestisci gli errori dell'invio della notifica se necessario
+                }
+              );
+          }
 
-          this.ens
-            .sendNotification(
-              'metiupaga8@gmail.com',
-              data.workers,
-              soggettoNotifica,
-              testoNotifica,
-              environment.urlWebSite + '/admin-dashboard/weekly-lists-not-drafted',
-              environment.urlWebSite + '/user-dashboard/weekly-lists-not-drafted'
-            )
-            .subscribe(
-              () => {
-                console.log('Notifica inviata con successo');
-                // Gestisci la risposta dell'invio della notifica se necessario
-              },
-              (error) => {
-                console.error("Errore durante l'invio della notifica:", error);
-                // Gestisci gli errori dell'invio della notifica se necessario
-              }
-            );
           this.message = 'Lista creata';
           this.router.navigate(['/admin-dashboard/weekly-lists-not-drafted']);
         },
@@ -159,9 +162,11 @@ export class VisualizeSingleWeeklylistComponent {
           this.errormessage = error.error.errormessage;
         }
       );
+
     // Stampa la mappa nella console
     console.log(this.workerDaysMap);
   }
+
 
   getUserIds(): string[] {
     return Object.keys(this.userPrenotationCounts);

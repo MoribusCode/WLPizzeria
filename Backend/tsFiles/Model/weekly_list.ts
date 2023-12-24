@@ -1,5 +1,5 @@
 import { Model, Schema, HydratedDocument, model, Types } from 'mongoose';
-import { workersPreference } from '../Server/server';
+import { workersPreference } from '../Server/calculateList/main';
 
 // Definisci il modello per le giornate di prenotazione
 export interface PrenotationDay {

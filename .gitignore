@@ -28,7 +28,6 @@ yarn-error.log*
 /frontend/.cache
 
 # File specifici dell'ambiente
-.env
 /frontend/.env
 
 # Directory di output della compilazione

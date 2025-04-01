@@ -42,3 +42,4 @@ yarn-error.log*
 # Altri file e cartelle
 .DS_Store
 Thumbs.db
+Backend/tsFiles/Server/.env

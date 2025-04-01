@@ -130,18 +130,20 @@ async function run() {
   } else {
     console.log('admin non trovato');
     const user = new User();
-    user.firstName = 'Matteo';
-    user.lastName = 'Pagano';
+    user.firstName = 'Jacopo';
+    user.lastName = 'Moro';
     user.isOwner = true;
-    user.email = 'metiupaga8@gmail.com';
+    user.email = 'jacopomoro04@gmail.com';
     user.setPassword('admin');
 
 
     await user.save();
     console.log('Utente Salvato');
-    const matteo = await User.findOne({ firstName: 'Matteo' });
+    const matteo = await User.findOne({ firstName: 'Jacopo' });
     console.log('is password correct? ' + matteo.isPasswordCorrect('admin'));
   }
 }
 
 run().catch((err) => console.log(err));
+
+console.log ();

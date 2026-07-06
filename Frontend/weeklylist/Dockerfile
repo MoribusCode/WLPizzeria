@@ -8,21 +8,22 @@ RUN npm install --force
 COPY . .
 RUN npm run build
 
-# Stage 2: Serve the app with Apache
-FROM httpd:2.4
+# Stage 2: Serve the app with Nginx
+FROM nginx:1.27-alpine
 
-# Copy built Angular files to Apache's htdocs folder and .htaccess
-COPY --from=build /app/dist/weeklylist /usr/local/apache2/htdocs/
-COPY --from=build /app/.htaccess /usr/local/apache2/htdocs/
+# Install envsubst for runtime template rendering
+RUN apk add --no-cache gettext
 
-# Add custom configuration for mod_rewrite
-COPY my-httpd-conf.conf /usr/local/apache2/conf/my-httpd-conf.conf
-RUN echo "Include /usr/local/apache2/conf/my-httpd-conf.conf" >> /usr/local/apache2/conf/httpd.conf
+# Copy built Angular files to Nginx html folder
+COPY --from=build /app/dist/weeklylist /usr/share/nginx/html
 
-# Expose port 80 for Apache (this is mainly for local testing and clarity, Heroku will ignore it)
+# Copy Nginx SPA config template
+COPY my-angular-app.conf /etc/nginx/conf.d/my-angular-app.conf.template
+
+# Runtime entrypoint that renders the template and starts Nginx
+COPY start-nginx.sh /start-nginx.sh
+RUN chmod +x /start-nginx.sh
+
 EXPOSE 80
 
-# Use a custom entrypoint script to adjust the port Apache listens on at runtime
-COPY entrypoint.sh /usr/local/bin/
-RUN chmod +x /usr/local/bin/entrypoint.sh
-ENTRYPOINT ["entrypoint.sh"]
+ENTRYPOINT ["/start-nginx.sh"]

@@ -1,0 +1,23 @@
+services:
+  backend:
+    build:
+      context: ./Backend
+    environment:
+      PORT: 3000
+      DB_URL: ${DB_URL}
+      JWT_SECRET: ${JWT_SECRET}
+      FRONTEND_URL: ${FRONTEND_URL}
+    expose:
+      - "3000"
+    restart: unless-stopped
+
+  frontend:
+    build:
+      context: ./Frontend/weeklylist
+    environment:
+      PORT: 80
+    ports:
+      - "80:80"
+    depends_on:
+      - backend
+    restart: unless-stopped

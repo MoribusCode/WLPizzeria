@@ -9,7 +9,6 @@
     "run": "tsc && cp tsFiles/Server/.env dist/server/ && node ./dist/Server/server.js",
     "start-windows": "tsc && copy tsFiles\\Server\\.env dist\\server\\ && node ./dist/Server/server.js",
     "start-macos": "tsc && cp tsFiles/Server/.env dist/server/ && node ./dist/Server/server.js"
-
   },
   "keywords": [],
   "author": "",
@@ -32,6 +31,7 @@
   },
   "dependencies": {
     "cors": "^2.8.5",
+    "mongodb": "^6.16.0",
     "mongoose": "^7.5.0",
     "nodemailer": "^6.9.7"
   }

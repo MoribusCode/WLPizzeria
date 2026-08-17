@@ -6,5 +6,5 @@ export const environment = {
   localStorageEmail: 'email',
   localStorageFirstName: 'firstName',
   localStorageLastName: 'lastName',
-  urlWebSite : ""
+  urlWebSite : "https://wl-pizzeria.vercel.app"
 };

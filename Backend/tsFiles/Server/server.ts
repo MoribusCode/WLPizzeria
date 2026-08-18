@@ -67,20 +67,8 @@ export const verifyJWT = jwt({
   algorithms: ['HS256'],
 });
 
-const allowedOrigins = [
-  'https://wl-pizzeria.vercel.app', 
-  'http://localhost:4200'        
-];
-
 app.use(cors({
-  origin: function (origin, callback) {
-    // Permette richieste senza origin (es. Postman o app mobile) o se è nella lista consentita
-    if (!origin || allowedOrigins.indexOf(origin) !== -1) {
-      callback(null, true);
-    } else {
-      callback(new Error('Bloccato dalla policy CORS'));
-    }
-  },
+  origin: true,
   credentials: true,
   methods: ['GET', 'POST', 'PUT', 'DELETE', 'OPTIONS'],
   allowedHeaders: ['Content-Type', 'Authorization']

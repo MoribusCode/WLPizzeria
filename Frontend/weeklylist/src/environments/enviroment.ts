@@ -1,7 +1,7 @@
 export const environment = {
 
   production: false,
-  backendUrl: 'https://wlpizzeria.onrender.com',
+  backendUrl: 'https://wlpizzeria.onrender.com/api/v1',
   //backendUrl: 'http://localhost:3000/api/v1',
   //backendUrl: 'https://weeklylistv2-6f391fbc0f5d.herokuapp.com/api/v1',
   localStorageTokenKey: 'token_auth',
